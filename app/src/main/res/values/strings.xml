@@ -2,4 +2,7 @@
 
     <string name="app_name">Gamedisc</string>
 
+    <string name="toast_failed_io_remote">No internet connection</string>
+    <string name="toast_failed_http_remote">%1$s. Error code: %2$d</string>
+
 </resources>

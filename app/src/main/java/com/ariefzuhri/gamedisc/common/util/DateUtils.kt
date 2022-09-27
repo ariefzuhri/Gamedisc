@@ -18,3 +18,18 @@ fun getCurrentDate(dateFormat: DateFormat): String {
     val date = Calendar.getInstance().time
     return formatter.format(date)
 }
+
+fun reformatDate(input: String, inputFormat: DateFormat, outputFormat: DateFormat): String {
+    try {
+        val inputFormatter = SimpleDateFormat(inputFormat.pattern, Locale.getDefault())
+        val outputFormatter = SimpleDateFormat(outputFormat.pattern, Locale.getDefault())
+
+        val inputDate = inputFormatter.parse(input)
+        if (inputDate != null) {
+            return outputFormatter.format(inputDate)
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+    return input
+}
