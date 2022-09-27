@@ -14,8 +14,8 @@ class SeeLatestReleasedGamesInteractor(
 ) : SeeLatestReleasedGamesUseCase {
 
     override fun getLatestReleasedGames(): Flowable<PagingData<Game>> {
-        val startDate = getCurrentDate(DateFormat.DATE_RAW)
-        val endDate = addDate(startDate, DateFormat.DATE_RAW, 6)
+        val startDate = getCurrentDate(DateFormat.DATE_RAW_LONG)
+        val endDate = addDate(startDate, DateFormat.DATE_RAW_LONG, 6)
         return gameRepository.getLatestReleasedGames(
             pageSize = 10,
             platformIds = listOf(Platform.PC),
