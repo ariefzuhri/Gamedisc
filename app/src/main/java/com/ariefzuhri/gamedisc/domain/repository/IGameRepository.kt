@@ -1,14 +1,27 @@
 package com.ariefzuhri.gamedisc.domain.repository
 
+import androidx.paging.PagingData
+import com.ariefzuhri.gamedisc.domain.enums.Platform
 import com.ariefzuhri.gamedisc.domain.model.Game
-import com.ariefzuhri.gamedisc.common.helper.Resource
 import io.reactivex.rxjava3.core.Flowable
 
 interface IGameRepository {
 
-    fun getTopRatedGames(): Flowable<Resource<List<Game>>>
+    fun getTopRatedGames(
+        pageSize: Int,
+        platformIds: List<Platform>,
+    ): Flowable<PagingData<Game>>
 
-    fun getLatestReleasedGames(): Flowable<Resource<List<Game>>>
+    fun getLatestReleasedGames(
+        pageSize: Int,
+        platformIds: List<Platform>,
+        startDate: String,
+        endDate: String,
+    ): Flowable<PagingData<Game>>
 
-    fun searchGames(query: String): Flowable<Resource<List<Game>>>
+    fun searchGames(
+        pageSize: Int,
+        platformIds: List<Platform>,
+        query: String,
+    ): Flowable<PagingData<Game>>
 }
