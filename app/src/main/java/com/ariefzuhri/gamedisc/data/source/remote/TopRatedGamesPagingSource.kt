@@ -16,12 +16,13 @@ import javax.inject.Singleton
 class TopRatedGamesPagingSource @Inject constructor(
     private val apiService: ApiService,
     private val remoteErrorLogger: ErrorLogger,
-    var platformIds: List<Platform>,
 ) : RxPagingSource<Int, GamesResponse.ResultsItem>() {
 
     companion object {
         private val TAG = TopRatedGamesPagingSource::class.java.simpleName
         private const val START_PAGE_NUMBER = 1
+
+        private val platformIds = listOf(Platform.PC)
     }
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, GamesResponse.ResultsItem>> {

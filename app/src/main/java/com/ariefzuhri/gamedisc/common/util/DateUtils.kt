@@ -13,6 +13,10 @@ fun addDate(date: String, dateFormat: DateFormat, amount: Int): String {
     return formatter.format(newDate.time)
 }
 
+fun subtractDate(date: String, dateFormat: DateFormat, amount: Int): String {
+    return addDate(date = date, dateFormat = dateFormat, amount = -amount)
+}
+
 fun getCurrentDate(dateFormat: DateFormat): String {
     val formatter = SimpleDateFormat(dateFormat.pattern, Locale.getDefault())
     val date = Calendar.getInstance().time
