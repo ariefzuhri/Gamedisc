@@ -18,6 +18,12 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
+    <style name="Theme.Gamedisc.Starting" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.Gamedisc</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo_56_splash</item>
+        <item name="windowSplashScreenBackground">@color/white</item>
+    </style>
+
     <style name="AppBarLayout">
         <item name="elevation">0dp</item>
     </style>
