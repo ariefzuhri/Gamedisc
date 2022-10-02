@@ -96,4 +96,10 @@ dependencies {
     // Dependency injection
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+
+    // Image loading and caching
+    implementation "io.coil-kt:coil:$coilVersion"
+
+    // Shimmer effect on loading screen
+    implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
 }
