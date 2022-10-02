@@ -164,7 +164,7 @@ data class GamesResponse(
         val released: String? = null,
 
         @Json(name = "stores")
-        val stores: StoresItem? = null,
+        val stores: List<StoresItem?>? = null,
 
         @Json(name = "suggestions_count")
         val suggestionsCount: Int? = null,

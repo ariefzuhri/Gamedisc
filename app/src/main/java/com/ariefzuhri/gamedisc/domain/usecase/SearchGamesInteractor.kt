@@ -5,8 +5,9 @@ import com.ariefzuhri.gamedisc.domain.enums.Platform
 import com.ariefzuhri.gamedisc.domain.model.Game
 import com.ariefzuhri.gamedisc.domain.repository.IGameRepository
 import io.reactivex.rxjava3.core.Flowable
+import javax.inject.Inject
 
-class SearchGamesInteractor(
+class SearchGamesInteractor @Inject constructor(
     private val gameRepository: IGameRepository,
 ) : SearchGamesUseCase {
 

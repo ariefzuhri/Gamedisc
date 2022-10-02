@@ -33,13 +33,10 @@ class GameRepository @Inject constructor(
             config = PagingConfig(
                 pageSize = pageSize,
                 initialLoadSize = pageSize,
-                enablePlaceholders = true,
                 prefetchDistance = 4
             ),
             pagingSourceFactory = {
-                topRatedGamesPagingSource.apply {
-                    this.platformIds = platformIds
-                }
+                topRatedGamesPagingSource
             }
         ).flowable.map { pagingData ->
             pagingData.map {
@@ -52,21 +49,16 @@ class GameRepository @Inject constructor(
         pageSize: Int,
         platformIds: List<Platform>,
         startDate: String,
-        endDate: String,
+        lastDate: String,
     ): Flowable<PagingData<Game>> {
         return Pager(
             config = PagingConfig(
                 pageSize = pageSize,
                 initialLoadSize = pageSize,
-                enablePlaceholders = true,
                 prefetchDistance = 4
             ),
             pagingSourceFactory = {
-                latestReleasedGamesPagingSource.apply {
-                    this.platformIds = platformIds
-                    this.startDate = startDate
-                    this.endDate = endDate
-                }
+                latestReleasedGamesPagingSource
             }
         ).flowable.map { pagingData ->
             pagingData.map {
@@ -84,14 +76,10 @@ class GameRepository @Inject constructor(
             config = PagingConfig(
                 pageSize = pageSize,
                 initialLoadSize = pageSize,
-                enablePlaceholders = true,
                 prefetchDistance = 4
             ),
             pagingSourceFactory = {
-                searchGamesPagingSource.apply {
-                    this.platformIds = platformIds
-                    this.query = query
-                }
+                searchGamesPagingSource
             }
         ).flowable.map { pagingData ->
             pagingData.map {

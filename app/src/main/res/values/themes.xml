@@ -1,18 +1,107 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="Theme.Gamedisc" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Gamedisc" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorSecondaryVariant">@color/white</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/maven_pro</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="AppBarLayout">
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="CircleImageView">
+        <item name="shapeAppearanceOverlay">@style/CircleImageViewShapeAppearanceOverlay</item>
+    </style>
+
+    <style name="CircleImageViewShapeAppearanceOverlay">
+        <item name="cornerSize">8%</item>
+    </style>
+
+    <style name="RatingMaterialCardView" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/RatingMaterialCardViewShapeAppearance</item>
+    </style>
+
+    <style name="RatingMaterialCardViewShapeAppearance">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
+    </style>
+
+    <style name="RecyclerView">
+        <item name="android:clipToPadding">false</item>
+        <item name="android:overScrollMode">never</item>
+    </style>
+
+    <style name="ScrollView">
+        <item name="android:clipToPadding">false</item>
+        <item name="android:overScrollMode">never</item>
+    </style>
+
+    <style name="SearchView">
+        <item name="android:background">@drawable/sv_primary</item>
+        <item name="android:theme">@style/SearchViewTheme</item>
+        <item name="iconifiedByDefault">false</item>
+        <item name="queryBackground">@color/light_gray</item>
+        <item name="submitBackground">@color/light_gray</item>
+    </style>
+
+    <style name="SearchViewTheme" parent="Widget.AppCompat.SearchView">
+        <item name="android:colorControlActivated">@color/gray</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
+
+    <style name="ShimmerFrameLayout">
+        <item name="shimmer_auto_start">true</item>
+        <item name="shimmer_base_alpha">0.2</item>
+        <item name="shimmer_base_color">@color/light_gray</item>
+        <item name="shimmer_highlight_alpha">0.4</item>
+        <item name="shimmer_highlight_color">@color/gray</item>
+        <item name="shimmer_repeat_mode">reverse</item>
+    </style>
+
+    <style name="TextView">
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextView.Header">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextView.Header.1">
+        <item name="android:textSize">@dimen/textsize_xlarge</item>
+    </style>
+
+    <style name="TextView.Header.2">
+        <item name="android:textSize">@dimen/textsize_large</item>
+    </style>
+
+    <style name="TextView.Header.3">
+        <item name="android:textSize">@dimen/textsize_normal</item>
+    </style>
+
+    <style name="TextView.Normal">
+        <item name="android:textSize">@dimen/textsize_normal</item>
+    </style>
+
+    <style name="TextView.Small">
+        <item name="android:textSize">@dimen/textsize_small</item>
     </style>
 
 </resources>

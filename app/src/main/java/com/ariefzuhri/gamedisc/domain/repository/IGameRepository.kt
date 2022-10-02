@@ -16,7 +16,7 @@ interface IGameRepository {
         pageSize: Int,
         platformIds: List<Platform>,
         startDate: String,
-        endDate: String,
+        lastDate: String,
     ): Flowable<PagingData<Game>>
 
     fun searchGames(
