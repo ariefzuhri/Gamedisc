@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ShimmerFrameLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include layout="@layout/item_horizontal_game_placeholder" />
+
+            <include layout="@layout/item_horizontal_game_placeholder" />
+
+            <include layout="@layout/item_horizontal_game_placeholder" />
+
+            <include layout="@layout/item_horizontal_game_placeholder" />
+
+            <include layout="@layout/item_horizontal_game_placeholder" />
+
+            <include layout="@layout/item_horizontal_game_placeholder" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</com.facebook.shimmer.ShimmerFrameLayout>
