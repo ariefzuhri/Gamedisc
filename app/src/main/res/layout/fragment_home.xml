@@ -34,22 +34,22 @@
                     android:layout_marginStart="16dp"
                     android:drawableStart="@drawable/ic_logo_32_home"
                     android:text="@string/app_name"
-                    app:layout_constraintBottom_toBottomOf="@+id/sv_game"
+                    app:layout_constraintBottom_toBottomOf="@+id/edt_search"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/sv_game" />
+                    app:layout_constraintTop_toTopOf="@+id/edt_search" />
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/sv_game"
-                    style="@style/SearchView"
+                <EditText
+                    android:id="@+id/edt_search"
+                    style="@style/EditText.Clickable"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:inputType="textCapWords"
+                    android:drawableStart="@drawable/ic_search_24"
+                    android:hint="@string/sv_hint_game_home"
+                    android:importantForAutofill="no"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_app_name"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:queryHint="@string/sv_hint_game_home"
-                    app:searchIcon="@drawable/ic_search_24" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

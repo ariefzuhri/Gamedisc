@@ -36,6 +36,29 @@
         <item name="cornerSize">8%</item>
     </style>
 
+    <style name="EditText">
+        <item name="android:background">@drawable/edt_primary</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHighlight">@color/gray</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+    </style>
+
+    <style name="EditText.Clickable">
+        <item name="android:clickable">true</item>
+        <item name="android:editable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:inputType">none</item>
+    </style>
+
     <style name="RatingMaterialCardView" parent="@style/Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/RatingMaterialCardViewShapeAppearance</item>
     </style>
