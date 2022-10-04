@@ -7,16 +7,15 @@
     tools:context=".ui.list.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/ab_home"
         style="@style/AppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_home"
+            style="@style/Toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:paddingVertical="16dp"
             app:contentInsetStart="0dp"
             app:layout_collapseMode="pin"
@@ -34,22 +33,22 @@
                     android:layout_marginStart="16dp"
                     android:drawableStart="@drawable/ic_logo_32_home"
                     android:text="@string/app_name"
-                    app:layout_constraintBottom_toBottomOf="@+id/sv_game"
+                    app:layout_constraintBottom_toBottomOf="@+id/edt_search"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/sv_game" />
+                    app:layout_constraintTop_toTopOf="@+id/edt_search" />
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/sv_game"
-                    style="@style/SearchView"
+                <EditText
+                    android:id="@+id/edt_search"
+                    style="@style/EditText.Clickable"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:inputType="textCapWords"
+                    android:drawableStart="@drawable/ic_search_24"
+                    android:hint="@string/sv_hint_game_home"
+                    android:importantForAutofill="no"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_app_name"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:queryHint="@string/sv_hint_game_home"
-                    app:searchIcon="@drawable/ic_search_24" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -61,10 +60,7 @@
         style="@style/ScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sv_games">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,7 +76,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:drawableStart="@drawable/ic_top_rated_24_home"
-                android:text="@string/tv_top_rated_title_games" />
+                android:text="@string/tv_top_rated_title_games_home" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -96,9 +92,8 @@
                     tools:listitem="@layout/item_game" />
 
                 <include
-                    android:id="@+id/layout_top_rated_game_placeholder"
-                    layout="@layout/layout_horizontal_game_placeholder"
-                    android:paddingHorizontal="8dp" />
+                    android:id="@+id/lyt_top_rated_game_placeholder"
+                    layout="@layout/layout_horizontal_game_placeholder" />
 
             </FrameLayout>
 
@@ -111,7 +106,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:drawableStart="@drawable/ic_latest_released_24_home"
-                android:text="@string/tv_latest_released_games_title" />
+                android:text="@string/tv_latest_released_games_title_home" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -127,10 +122,8 @@
                     tools:listitem="@layout/item_game" />
 
                 <include
-                    android:id="@+id/layout_latest_released_game_placeholder"
-                    layout="@layout/layout_vertical_game_placeholder"
-                    android:paddingHorizontal="8dp"
-                    android:paddingBottom="16dp" />
+                    android:id="@+id/lyt_latest_released_game_placeholder"
+                    layout="@layout/layout_vertical_game_placeholder" />
 
             </FrameLayout>
 

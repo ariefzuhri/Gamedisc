@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.search.SearchFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        style="@style/AppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_search"
+            style="@style/Toolbar.Backable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <SearchView
+                    android:id="@+id/sv_game"
+                    style="@style/SearchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:queryHint="@string/sv_hint_game_search"
+                    android:searchIcon="@drawable/ic_search_24" />
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        style="@style/ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/lyt_hint_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="32dp">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    style="@style/LottieAnimationView"
+                    android:layout_width="300dp"
+                    android:layout_height="80dp"
+                    android:scaleType="center"
+                    app:lottie_colorFilter="@color/gray"
+                    app:lottie_fileName="search_hint.json"
+                    app:lottie_repeatMode="reverse" />
+
+                <TextView
+                    style="@style/TextView.Header.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/tv_title_hint_search_search"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray" />
+
+                <TextView
+                    style="@style/TextView.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_description_hint_search_search"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_results"
+                style="@style/RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:paddingHorizontal="8dp"
+                tools:listitem="@layout/item_game" />
+
+            <include
+                android:id="@+id/lyt_results_placeholder"
+                layout="@layout/layout_vertical_game_placeholder" />
+
+            <LinearLayout
+                android:id="@+id/lyt_empty_results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="32dp">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    style="@style/LottieAnimationView"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:scaleType="center"
+                    app:lottie_fileName="empty_result.json" />
+
+                <TextView
+                    style="@style/TextView.Header.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/tv_title_empty_results_search"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray" />
+
+                <TextView
+                    style="@style/TextView.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_description_empty_results_search"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

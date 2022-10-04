@@ -18,12 +18,17 @@ class SearchGamesPagingSource @Inject constructor(
     private val remoteErrorLogger: ErrorLogger,
 ) : RxPagingSource<Int, GamesResponse.ResultsItem>() {
 
+    private var platformIds = listOf<Platform>()
+    private var query = ""
+
+    fun setParams(platformIds: List<Platform>, query: String) {
+        this.platformIds = platformIds
+        this.query = query
+    }
+
     companion object {
         private val TAG = SearchGamesPagingSource::class.java.simpleName
         private const val START_PAGE_NUMBER = 1
-
-        private val platformIds = listOf(Platform.PC)
-        private val query = ""
     }
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, GamesResponse.ResultsItem>> {

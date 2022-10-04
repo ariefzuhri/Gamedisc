@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ariefzuhri.gamedisc.common.action.navigateToSearch
 import com.ariefzuhri.gamedisc.common.base.BaseFragment
 import com.ariefzuhri.gamedisc.common.ui.adapter.GameAdapter
 import com.ariefzuhri.gamedisc.common.util.DataLoadingContainer
@@ -51,11 +52,13 @@ class HomeFragment : BaseFragment() {
         initLatestReleasedGameAdapter()
         initLatestReleasedGameRecyclerView()
         observeLatestReleasedGames()
+
+        initClickListeners()
     }
 
     private fun initTopRatedGameLoadingContainer() {
         topRatedGamesLoadingContainer = DataLoadingContainer(
-            shimmer = binding.layoutTopRatedGamePlaceholder.root,
+            shimmer = binding.lytTopRatedGamePlaceholder.root,
             emptyState = null,
             binding.rvTopRatedGame
         )
@@ -80,6 +83,7 @@ class HomeFragment : BaseFragment() {
             )
             layoutManager = linearLayoutManager
             adapter = topRatedGameAdapter
+            setHasFixedSize(true)
         }
     }
 
@@ -93,7 +97,7 @@ class HomeFragment : BaseFragment() {
 
     private fun initLatestReleasedGameLoadingContainer() {
         latestReleasedGamesLoadingContainer = DataLoadingContainer(
-            shimmer = binding.layoutLatestReleasedGamePlaceholder.root,
+            shimmer = binding.lytLatestReleasedGamePlaceholder.root,
             emptyState = null,
             binding.rvLatestReleasedGame
         )
@@ -116,6 +120,7 @@ class HomeFragment : BaseFragment() {
             val gridLayoutManager = GridLayoutManager(context, 2)
             layoutManager = gridLayoutManager
             adapter = latestReleasedGameAdapter
+            setHasFixedSize(true)
         }
     }
 
@@ -125,6 +130,12 @@ class HomeFragment : BaseFragment() {
                 latestReleasedGameAdapter.submitData(lifecycle, pagingData)
             }
         )
+    }
+
+    private fun initClickListeners() {
+        binding.edtSearch.setOnClickListener {
+            navigateToSearch()
+        }
     }
 
     override fun onDestroyView() {

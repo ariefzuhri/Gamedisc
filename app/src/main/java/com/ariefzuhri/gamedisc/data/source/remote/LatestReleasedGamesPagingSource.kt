@@ -2,12 +2,9 @@ package com.ariefzuhri.gamedisc.data.source.remote
 
 import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxPagingSource
-import com.ariefzuhri.gamedisc.common.util.getCurrentDate
-import com.ariefzuhri.gamedisc.common.util.subtractDate
 import com.ariefzuhri.gamedisc.data.source.remote.logger.ErrorLogger
 import com.ariefzuhri.gamedisc.data.source.remote.network.ApiService
 import com.ariefzuhri.gamedisc.data.source.remote.response.GamesResponse
-import com.ariefzuhri.gamedisc.domain.enums.DateFormat
 import com.ariefzuhri.gamedisc.domain.enums.Platform
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
@@ -21,13 +18,19 @@ class LatestReleasedGamesPagingSource @Inject constructor(
     private val remoteErrorLogger: ErrorLogger,
 ) : RxPagingSource<Int, GamesResponse.ResultsItem>() {
 
+    private var platformIds = listOf<Platform>()
+    private var startDate = ""
+    private var lastDate = ""
+
+    fun setParams(platformIds: List<Platform>, startDate: String, lastDate: String) {
+        this.platformIds = platformIds
+        this.startDate = startDate
+        this.lastDate = lastDate
+    }
+
     companion object {
         private val TAG = LatestReleasedGamesPagingSource::class.java.simpleName
         private const val START_PAGE_NUMBER = 1
-
-        private val platformIds = listOf(Platform.PC)
-        private val lastDate = getCurrentDate(DateFormat.DATE_RAW_LONG)
-        private val startDate = subtractDate(lastDate, DateFormat.DATE_RAW_LONG, 6)
     }
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, GamesResponse.ResultsItem>> {
