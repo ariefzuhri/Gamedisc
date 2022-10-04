@@ -36,7 +36,11 @@ class GameRepository @Inject constructor(
                 prefetchDistance = 4
             ),
             pagingSourceFactory = {
-                topRatedGamesPagingSource
+                topRatedGamesPagingSource.apply {
+                    setParams(
+                        platformIds = platformIds
+                    )
+                }
             }
         ).flowable.map { pagingData ->
             pagingData.map {
@@ -58,7 +62,13 @@ class GameRepository @Inject constructor(
                 prefetchDistance = 4
             ),
             pagingSourceFactory = {
-                latestReleasedGamesPagingSource
+                latestReleasedGamesPagingSource.apply {
+                    setParams(
+                        platformIds = platformIds,
+                        startDate = startDate,
+                        lastDate = lastDate
+                    )
+                }
             }
         ).flowable.map { pagingData ->
             pagingData.map {
@@ -79,7 +89,12 @@ class GameRepository @Inject constructor(
                 prefetchDistance = 4
             ),
             pagingSourceFactory = {
-                searchGamesPagingSource
+                searchGamesPagingSource.apply {
+                    setParams(
+                        platformIds = platformIds,
+                        query = query
+                    )
+                }
             }
         ).flowable.map { pagingData ->
             pagingData.map {
