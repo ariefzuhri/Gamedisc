@@ -6,7 +6,7 @@
     <string name="toast_failed_http_remote">%1$s. Error code: %2$d</string>
 
     <string name="sv_hint_game_home">search here…</string>
-    <string name="tv_top_rated_title_games">Top Rated</string>
-    <string name="tv_latest_released_games_title">Latest Released</string>
+    <string name="tv_top_rated_title_games_home">Top Rated</string>
+    <string name="tv_latest_released_games_title_home">Latest Released</string>
 
 </resources>

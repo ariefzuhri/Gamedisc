@@ -55,7 +55,7 @@ class HomeFragment : BaseFragment() {
 
     private fun initTopRatedGameLoadingContainer() {
         topRatedGamesLoadingContainer = DataLoadingContainer(
-            shimmer = binding.layoutTopRatedGamePlaceholder.root,
+            shimmer = binding.lytTopRatedGamePlaceholder.root,
             emptyState = null,
             binding.rvTopRatedGame
         )
@@ -80,6 +80,7 @@ class HomeFragment : BaseFragment() {
             )
             layoutManager = linearLayoutManager
             adapter = topRatedGameAdapter
+            setHasFixedSize(true)
         }
     }
 
@@ -93,7 +94,7 @@ class HomeFragment : BaseFragment() {
 
     private fun initLatestReleasedGameLoadingContainer() {
         latestReleasedGamesLoadingContainer = DataLoadingContainer(
-            shimmer = binding.layoutLatestReleasedGamePlaceholder.root,
+            shimmer = binding.lytLatestReleasedGamePlaceholder.root,
             emptyState = null,
             binding.rvLatestReleasedGame
         )
@@ -116,6 +117,7 @@ class HomeFragment : BaseFragment() {
             val gridLayoutManager = GridLayoutManager(context, 2)
             layoutManager = gridLayoutManager
             adapter = latestReleasedGameAdapter
+            setHasFixedSize(true)
         }
     }
 
