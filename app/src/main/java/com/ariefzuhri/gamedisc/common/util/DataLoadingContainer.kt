@@ -10,7 +10,10 @@ class DataLoadingContainer constructor(
 ) {
 
     init {
-        startLoading()
+        shimmer?.gone(true)
+        shimmer?.stopShimmer()
+        emptyState?.gone(true)
+        for (content in mainContents) content.gone(true)
     }
 
     fun startLoading() {
