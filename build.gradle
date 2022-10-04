@@ -41,7 +41,9 @@ ext {
 
     rxJavaVersion = '3.1.5'
     rxAndroidVersion = '3.0.0'
+    rxBindingVersion = '4.0.0'
 
     coilVersion = '2.2.1'
+    lottieVersion = '5.2.0'
     shimmerVersion = '0.5.0'
 }

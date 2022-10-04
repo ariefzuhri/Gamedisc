@@ -9,4 +9,10 @@
     <string name="tv_top_rated_title_games_home">Top Rated</string>
     <string name="tv_latest_released_games_title_home">Latest Released</string>
 
+    <string name="sv_hint_game_search">search here…</string>
+    <string name="tv_title_hint_search_search">Search the games</string>
+    <string name="tv_description_hint_search_search">Enter keywords to start the search</string>
+    <string name="tv_title_empty_results_search">No results to show</string>
+    <string name="tv_description_empty_results_search">Please check spelling or try different keywords</string>
+
 </resources>

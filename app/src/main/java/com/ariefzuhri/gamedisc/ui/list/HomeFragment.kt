@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ariefzuhri.gamedisc.common.action.navigateToSearch
 import com.ariefzuhri.gamedisc.common.base.BaseFragment
 import com.ariefzuhri.gamedisc.common.ui.adapter.GameAdapter
 import com.ariefzuhri.gamedisc.common.util.DataLoadingContainer
@@ -51,6 +52,8 @@ class HomeFragment : BaseFragment() {
         initLatestReleasedGameAdapter()
         initLatestReleasedGameRecyclerView()
         observeLatestReleasedGames()
+
+        initClickListeners()
     }
 
     private fun initTopRatedGameLoadingContainer() {
@@ -127,6 +130,12 @@ class HomeFragment : BaseFragment() {
                 latestReleasedGameAdapter.submitData(lifecycle, pagingData)
             }
         )
+    }
+
+    private fun initClickListeners() {
+        binding.edtSearch.setOnClickListener {
+            navigateToSearch()
+        }
     }
 
     override fun onDestroyView() {

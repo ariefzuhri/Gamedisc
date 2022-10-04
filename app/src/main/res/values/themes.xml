@@ -59,6 +59,11 @@
         <item name="android:inputType">none</item>
     </style>
 
+    <style name="LottieAnimationView">
+        <item name="lottie_autoPlay">true</item>
+        <item name="lottie_loop">true</item>
+    </style>
+
     <style name="RatingMaterialCardView" parent="@style/Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/RatingMaterialCardViewShapeAppearance</item>
     </style>
@@ -83,10 +88,10 @@
 
     <style name="SearchView">
         <item name="android:background">@drawable/sv_primary</item>
+        <item name="android:iconifiedByDefault">false</item>
+        <item name="android:queryBackground">@color/light_gray</item>
+        <item name="android:submitBackground">@color/light_gray</item>
         <item name="android:theme">@style/SearchViewTheme</item>
-        <item name="iconifiedByDefault">false</item>
-        <item name="queryBackground">@color/light_gray</item>
-        <item name="submitBackground">@color/light_gray</item>
     </style>
 
     <style name="SearchViewTheme" parent="Widget.AppCompat.SearchView">
@@ -131,6 +136,15 @@
 
     <style name="TextView.Small">
         <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+
+    <style name="Toolbar">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="Toolbar.Backable">
+        <item name="navigationIcon">@drawable/ic_back_24</item>
+        <item name="navigationIconTint">@color/black</item>
     </style>
 
 </resources>
