@@ -1,4 +1,4 @@
-package com.ariefzuhri.gamedisc
+package com.ariefzuhri.gamedisc.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
