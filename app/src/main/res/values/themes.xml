@@ -36,7 +36,22 @@
         <item name="cornerSize">8%</item>
     </style>
 
-    <style name="EditText">
+    <style name="Button" parent="TextView.Header.3">
+        <item name="android:background">@drawable/btn_primary</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingEnd">32dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@null</item>
+    </style>
+
+    <style name="EditText" parent="TextView.Normal">
         <item name="android:background">@drawable/edt_primary</item>
         <item name="android:drawablePadding">8dp</item>
         <item name="android:layout_marginTop">4dp</item>
@@ -47,9 +62,7 @@
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textColor">@color/black</item>
         <item name="android:textColorHighlight">@color/gray</item>
-        <item name="android:textSize">@dimen/textsize_normal</item>
     </style>
 
     <style name="EditText.Clickable">
@@ -60,8 +73,10 @@
     </style>
 
     <style name="LottieAnimationView">
+        <item name="android:scaleType">center</item>
         <item name="lottie_autoPlay">true</item>
         <item name="lottie_loop">true</item>
+        <item name="lottie_repeatMode">reverse</item>
     </style>
 
     <style name="RatingMaterialCardView" parent="@style/Widget.MaterialComponents.CardView">
@@ -146,5 +161,15 @@
         <item name="navigationIcon">@drawable/ic_back_24</item>
         <item name="navigationIconTint">@color/black</item>
     </style>
+
+    <declare-styleable name="StateView">
+        <attr name="animationColor" format="color" />
+        <attr name="animationFile" format="string" />
+        <attr name="animationHeight" format="dimension" />
+        <attr name="animationWidth" format="dimension" />
+        <attr name="description" format="string" />
+        <attr name="isError" format="boolean" />
+        <attr name="title" format="string" />
+    </declare-styleable>
 
 </resources>
