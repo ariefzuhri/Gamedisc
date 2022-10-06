@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_home"
-        android:name="com.ariefzuhri.gamedisc.ui.list.HomeFragment"
+        android:name="com.ariefzuhri.gamedisc.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home">
 
         <action
