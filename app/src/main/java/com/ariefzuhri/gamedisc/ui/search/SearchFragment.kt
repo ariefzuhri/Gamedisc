@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.ariefzuhri.gamedisc.common.base.BaseFragment
 import com.ariefzuhri.gamedisc.common.ui.adapter.GameAdapter
 import com.ariefzuhri.gamedisc.common.util.DataLoadingContainer
-import com.ariefzuhri.gamedisc.common.util.gone
 import com.ariefzuhri.gamedisc.common.util.showKeyboard
 import com.ariefzuhri.gamedisc.databinding.FragmentSearchBinding
 import com.ariefzuhri.gamedisc.domain.enums.ViewOrientation
@@ -47,13 +46,16 @@ class SearchFragment : BaseFragment() {
         initResultsRecyclerView()
         observeResults()
 
-        initView()
+        initViews()
+        initClickListeners()
     }
 
     private fun initResultsLoadingContainer() {
         resultsLoadingContainer = DataLoadingContainer(
             shimmer = binding.lytResultsPlaceholder.root,
-            emptyState = binding.lytEmptyResults,
+            initState = binding.stateInitResults,
+            emptyState = binding.stateEmptyResults,
+            errorState = binding.stateErrorResults,
             binding.rvResults
         )
     }
@@ -61,14 +63,11 @@ class SearchFragment : BaseFragment() {
     private fun initResultsAdapter() {
         resultsAdapter = GameAdapter(ViewOrientation.VERTICAL).apply {
             addLoadStateListener { loadState ->
-                when (val currentState = loadState.refresh) {
-                    is LoadState.Loading -> {
-                        binding.lytHintSearch.gone(true)
-                        resultsLoadingContainer.startLoading()
-                    }
-                    is LoadState.Error -> showToast(currentState.error.message)
-                    is LoadState.NotLoading -> {
-                        resultsLoadingContainer.stopLoading(isEmpty = itemCount == 0)
+                with(resultsLoadingContainer) {
+                    when (val currentState = loadState.refresh) {
+                        is LoadState.Loading -> startLoading()
+                        is LoadState.Error -> stopLoading(currentState.error.message)
+                        is LoadState.NotLoading -> stopLoading(isEmpty = itemCount == 0)
                     }
                 }
             }
@@ -104,10 +103,18 @@ class SearchFragment : BaseFragment() {
         })
     }
 
-    private fun initView() {
+    private fun initViews() {
         binding.apply {
             tbSearch.init()
             svGame.showKeyboard()
+        }
+    }
+
+    private fun initClickListeners() {
+        binding.apply {
+            stateErrorResults.setRetryAction {
+                resultsAdapter.retry()
+            }
         }
     }
 

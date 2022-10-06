@@ -46,7 +46,7 @@ class SearchGamesPagingSource @Inject constructor(
                     LoadResult.Page(
                         data = response.results as List<GamesResponse.ResultsItem>,
                         prevKey = null,
-                        nextKey = if (response.next == null) null else nextPageNumber + 1
+                        nextKey = if (response.next == null || nextPageNumber == 3) null else nextPageNumber + 1
                     )
                 } else {
                     LoadResult.Error(remoteErrorLogger.e(TAG, response.error))

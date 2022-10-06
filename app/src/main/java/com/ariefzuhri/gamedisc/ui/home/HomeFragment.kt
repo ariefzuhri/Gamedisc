@@ -1,4 +1,4 @@
-package com.ariefzuhri.gamedisc.ui.list
+package com.ariefzuhri.gamedisc.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -59,7 +59,9 @@ class HomeFragment : BaseFragment() {
     private fun initTopRatedGameLoadingContainer() {
         topRatedGamesLoadingContainer = DataLoadingContainer(
             shimmer = binding.lytTopRatedGamePlaceholder.root,
+            initState = null,
             emptyState = null,
+            errorState = null,
             binding.rvTopRatedGame
         )
     }
@@ -67,10 +69,12 @@ class HomeFragment : BaseFragment() {
     private fun initTopRatedGameAdapter() {
         topRatedGameAdapter = GameAdapter(ViewOrientation.HORIZONTAL).apply {
             addLoadStateListener { loadState ->
-                when (val currentState = loadState.refresh) {
-                    is LoadState.Loading -> topRatedGamesLoadingContainer.startLoading()
-                    is LoadState.Error -> showToast(currentState.error.message)
-                    is LoadState.NotLoading -> topRatedGamesLoadingContainer.stopLoading(false)
+                with(topRatedGamesLoadingContainer) {
+                    when (val currentState = loadState.refresh) {
+                        is LoadState.Loading -> startLoading()
+                        is LoadState.Error -> stopLoading(currentState.error.message)
+                        is LoadState.NotLoading -> stopLoading(false)
+                    }
                 }
             }
         }
@@ -98,7 +102,9 @@ class HomeFragment : BaseFragment() {
     private fun initLatestReleasedGameLoadingContainer() {
         latestReleasedGamesLoadingContainer = DataLoadingContainer(
             shimmer = binding.lytLatestReleasedGamePlaceholder.root,
+            initState = null,
             emptyState = null,
+            errorState = binding.stateError,
             binding.rvLatestReleasedGame
         )
     }
@@ -106,10 +112,12 @@ class HomeFragment : BaseFragment() {
     private fun initLatestReleasedGameAdapter() {
         latestReleasedGameAdapter = GameAdapter(ViewOrientation.VERTICAL).apply {
             addLoadStateListener { loadState ->
-                when (val currentState = loadState.refresh) {
-                    is LoadState.Loading -> latestReleasedGamesLoadingContainer.startLoading()
-                    is LoadState.Error -> showToast(currentState.error.message)
-                    is LoadState.NotLoading -> latestReleasedGamesLoadingContainer.stopLoading(false)
+                with(latestReleasedGamesLoadingContainer) {
+                    when (val currentState = loadState.refresh) {
+                        is LoadState.Loading -> startLoading()
+                        is LoadState.Error -> stopLoading(currentState.error.message)
+                        is LoadState.NotLoading -> stopLoading(false)
+                    }
                 }
             }
         }
@@ -133,8 +141,14 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initClickListeners() {
-        binding.edtSearch.setOnClickListener {
-            navigateToSearch()
+        binding.apply {
+            edtSearch.setOnClickListener {
+                navigateToSearch()
+            }
+            stateError.setRetryAction {
+                topRatedGameAdapter.retry()
+                latestReleasedGameAdapter.retry()
+            }
         }
     }
 

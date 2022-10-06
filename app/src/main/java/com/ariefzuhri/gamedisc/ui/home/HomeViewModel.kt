@@ -1,4 +1,4 @@
-package com.ariefzuhri.gamedisc.ui.list
+package com.ariefzuhri.gamedisc.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
