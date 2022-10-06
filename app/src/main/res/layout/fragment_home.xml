@@ -119,6 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:paddingHorizontal="8dp"
+                    tools:itemCount="1"
                     tools:listitem="@layout/item_game" />
 
                 <include
@@ -126,6 +127,16 @@
                     layout="@layout/layout_vertical_game_placeholder" />
 
             </FrameLayout>
+
+            <com.ariefzuhri.gamedisc.common.ui.custom.StateView
+                android:id="@+id/state_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:animationFile="empty_results.json"
+                app:animationHeight="220dp"
+                app:animationWidth="220dp"
+                app:isError="true"
+                tools:title="@string/toast_failed_io_remote" />
 
         </LinearLayout>
 
