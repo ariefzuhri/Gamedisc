@@ -9,11 +9,13 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ariefzuhri.gamedisc.common.action.navigateToSearch
+import com.ariefzuhri.gamedisc.common.action.openDetailsTab
 import com.ariefzuhri.gamedisc.common.base.BaseFragment
 import com.ariefzuhri.gamedisc.common.ui.adapter.GameAdapter
 import com.ariefzuhri.gamedisc.common.util.DataLoadingContainer
 import com.ariefzuhri.gamedisc.databinding.FragmentHomeBinding
 import com.ariefzuhri.gamedisc.domain.enums.ViewOrientation
+import com.ariefzuhri.gamedisc.domain.model.Game
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
@@ -68,6 +70,12 @@ class HomeFragment : BaseFragment() {
 
     private fun initTopRatedGameAdapter() {
         topRatedGameAdapter = GameAdapter(ViewOrientation.HORIZONTAL).apply {
+            setEventListener(object : GameAdapter.EventListener {
+                override fun onItemClick(game: Game) {
+                    context.openDetailsTab(game.id)
+                }
+            })
+
             addLoadStateListener { loadState ->
                 with(topRatedGamesLoadingContainer) {
                     when (val currentState = loadState.refresh) {
@@ -111,6 +119,12 @@ class HomeFragment : BaseFragment() {
 
     private fun initLatestReleasedGameAdapter() {
         latestReleasedGameAdapter = GameAdapter(ViewOrientation.VERTICAL).apply {
+            setEventListener(object : GameAdapter.EventListener {
+                override fun onItemClick(game: Game) {
+                    context.openDetailsTab(game.id)
+                }
+            })
+
             addLoadStateListener { loadState ->
                 with(latestReleasedGamesLoadingContainer) {
                     when (val currentState = loadState.refresh) {
