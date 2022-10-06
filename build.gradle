@@ -24,6 +24,7 @@ task clean(type: Delete) {
 
 ext {
     appCompatVersion = '1.5.1'
+    browserVersion = '1.4.0'
     coreVersion = '1.9.0'
     lifecycleVersion = '2.5.1'
     materialVersion = '1.6.1'

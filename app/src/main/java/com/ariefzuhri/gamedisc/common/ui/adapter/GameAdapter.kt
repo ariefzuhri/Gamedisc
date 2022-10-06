@@ -16,6 +16,8 @@ class GameAdapter(
     private val orientation: ViewOrientation,
 ) : PagingDataAdapter<Game, GameAdapter.GameViewHolder>(GameComparator) {
 
+    private var listener: EventListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val binding = ItemGameBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -45,8 +47,11 @@ class GameAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(game: Game) {
-            binding.adjustOrientation()
-            binding.initView(game)
+            binding.apply {
+                adjustOrientation()
+                initView(game)
+                initClickListeners(game)
+            }
         }
 
         private fun ItemGameBinding.adjustOrientation() {
@@ -62,5 +67,20 @@ class GameAdapter(
             tvRating.text = game.rating.toString()
             imgPoster.load(game.posterUrl)
         }
+
+        private fun ItemGameBinding.initClickListeners(game: Game) {
+            root.setOnClickListener {
+                listener?.onItemClick(game)
+            }
+        }
+    }
+
+    fun setEventListener(listener: EventListener?) {
+        this.listener = listener
+    }
+
+    interface EventListener {
+
+        fun onItemClick(game: Game)
     }
 }

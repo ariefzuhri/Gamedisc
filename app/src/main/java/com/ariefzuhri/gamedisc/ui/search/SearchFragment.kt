@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import com.ariefzuhri.gamedisc.common.action.openDetailsTab
 import com.ariefzuhri.gamedisc.common.base.BaseFragment
 import com.ariefzuhri.gamedisc.common.ui.adapter.GameAdapter
 import com.ariefzuhri.gamedisc.common.util.DataLoadingContainer
 import com.ariefzuhri.gamedisc.common.util.showKeyboard
 import com.ariefzuhri.gamedisc.databinding.FragmentSearchBinding
 import com.ariefzuhri.gamedisc.domain.enums.ViewOrientation
+import com.ariefzuhri.gamedisc.domain.model.Game
 import com.jakewharton.rxbinding4.widget.queryTextChanges
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -62,6 +64,12 @@ class SearchFragment : BaseFragment() {
 
     private fun initResultsAdapter() {
         resultsAdapter = GameAdapter(ViewOrientation.VERTICAL).apply {
+            setEventListener(object : GameAdapter.EventListener {
+                override fun onItemClick(game: Game) {
+                    context.openDetailsTab(game.id)
+                }
+            })
+
             addLoadStateListener { loadState ->
                 with(resultsLoadingContainer) {
                     when (val currentState = loadState.refresh) {
