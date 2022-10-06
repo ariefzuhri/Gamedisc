@@ -39,64 +39,57 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        style="@style/ScrollView"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <FrameLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_results"
+            style="@style/RecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:paddingHorizontal="8dp"
+            tools:listitem="@layout/item_game" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_results"
-                style="@style/RecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:paddingHorizontal="8dp"
-                tools:listitem="@layout/item_game" />
+        <com.ariefzuhri.gamedisc.common.ui.custom.StateView
+            android:id="@+id/state_init_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:animationColor="@color/gray"
+            app:animationFile="init_results.json"
+            app:animationHeight="80dp"
+            app:animationWidth="280dp"
+            app:description="@string/state_description_init_results_search"
+            app:isError="false"
+            app:title="@string/state_title_init_results_search" />
 
-            <com.ariefzuhri.gamedisc.common.ui.custom.StateView
-                android:id="@+id/state_init_results"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:animationColor="@color/gray"
-                app:animationFile="init_results.json"
-                app:animationHeight="80dp"
-                app:animationWidth="280dp"
-                app:description="@string/state_description_init_results_search"
-                app:isError="false"
-                app:title="@string/state_title_init_results_search" />
+        <include
+            android:id="@+id/lyt_results_placeholder"
+            layout="@layout/layout_vertical_game_placeholder" />
 
-            <include
-                android:id="@+id/lyt_results_placeholder"
-                layout="@layout/layout_vertical_game_placeholder" />
+        <com.ariefzuhri.gamedisc.common.ui.custom.StateView
+            android:id="@+id/state_empty_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:animationFile="empty_results.json"
+            app:animationHeight="220dp"
+            app:animationWidth="220dp"
+            app:description="@string/state_description_empty_results_search"
+            app:isError="false"
+            app:title="@string/state_title_empty_results_search" />
 
-            <com.ariefzuhri.gamedisc.common.ui.custom.StateView
-                android:id="@+id/state_empty_results"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:animationFile="empty_results.json"
-                app:animationHeight="220dp"
-                app:animationWidth="220dp"
-                app:description="@string/state_description_empty_results_search"
-                app:isError="false"
-                app:title="@string/state_title_empty_results_search" />
+        <com.ariefzuhri.gamedisc.common.ui.custom.StateView
+            android:id="@+id/state_error_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:animationFile="empty_results.json"
+            app:animationHeight="220dp"
+            app:animationWidth="220dp"
+            app:isError="true"
+            tools:title="@string/toast_failed_io_remote" />
 
-            <com.ariefzuhri.gamedisc.common.ui.custom.StateView
-                android:id="@+id/state_error_results"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:animationFile="empty_results.json"
-                app:animationHeight="220dp"
-                app:animationWidth="220dp"
-                app:isError="true"
-                tools:title="@string/toast_failed_io_remote" />
-
-        </FrameLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
