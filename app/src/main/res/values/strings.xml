@@ -2,4 +2,19 @@
 
     <string name="app_name">Gamedisc</string>
 
+    <string name="retry">Retry</string>
+
+    <string name="toast_failed_io_remote">No internet connection</string>
+    <string name="toast_failed_http_remote">%1$s. Error code: %2$d</string>
+
+    <string name="sv_hint_game_home">search here…</string>
+    <string name="tv_title_top_rated_games_home">Top Rated</string>
+    <string name="tv_title_latest_released_games_home">Latest Released</string>
+
+    <string name="sv_hint_game_search">search here…</string>
+    <string name="state_title_init_results_search">Search the games</string>
+    <string name="state_description_init_results_search">Enter keywords to start the search</string>
+    <string name="state_title_empty_results_search">No results to show</string>
+    <string name="state_description_empty_results_search">Please check spelling or try different keywords</string>
+
 </resources>

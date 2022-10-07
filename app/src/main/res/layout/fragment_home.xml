@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        style="@style/AppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_home"
+            style="@style/Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            app:contentInsetStart="0dp"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_app_name"
+                    style="@style/TextView.Header.1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:drawableStart="@drawable/ic_logo_32_home"
+                    android:text="@string/app_name"
+                    app:layout_constraintBottom_toBottomOf="@+id/edt_search"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/edt_search" />
+
+                <EditText
+                    android:id="@+id/edt_search"
+                    style="@style/EditText.Clickable"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:drawableStart="@drawable/ic_search_24"
+                    android:hint="@string/sv_hint_game_home"
+                    android:importantForAutofill="no"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_app_name"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_game"
+            style="@style/RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_game" />
+
+        <include
+            android:id="@+id/lyt_game_placeholder"
+            layout="@layout/layout_vertical_game_placeholder" />
+
+        <com.ariefzuhri.gamedisc.common.ui.custom.StateView
+            android:id="@+id/state_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:animationFile="empty_results.json"
+            app:animationHeight="220dp"
+            app:animationWidth="220dp"
+            app:isError="true"
+            tools:title="@string/toast_failed_io_remote" />
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

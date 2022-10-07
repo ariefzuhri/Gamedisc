@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.search.SearchFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        style="@style/AppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_search"
+            style="@style/Toolbar.Backable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <SearchView
+                    android:id="@+id/sv_game"
+                    style="@style/SearchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:queryHint="@string/sv_hint_game_search"
+                    android:searchIcon="@drawable/ic_search_24" />
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_results"
+            style="@style/RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:paddingHorizontal="8dp"
+            tools:listitem="@layout/item_game" />
+
+        <com.ariefzuhri.gamedisc.common.ui.custom.StateView
+            android:id="@+id/state_init_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:animationColor="@color/gray"
+            app:animationFile="init_results.json"
+            app:animationHeight="80dp"
+            app:animationWidth="280dp"
+            app:description="@string/state_description_init_results_search"
+            app:isError="false"
+            app:title="@string/state_title_init_results_search" />
+
+        <include
+            android:id="@+id/lyt_results_placeholder"
+            layout="@layout/layout_vertical_game_placeholder" />
+
+        <com.ariefzuhri.gamedisc.common.ui.custom.StateView
+            android:id="@+id/state_empty_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:animationFile="empty_results.json"
+            app:animationHeight="220dp"
+            app:animationWidth="220dp"
+            app:description="@string/state_description_empty_results_search"
+            app:isError="false"
+            app:title="@string/state_title_empty_results_search" />
+
+        <com.ariefzuhri.gamedisc.common.ui.custom.StateView
+            android:id="@+id/state_error_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:animationFile="empty_results.json"
+            app:animationHeight="220dp"
+            app:animationWidth="220dp"
+            app:isError="true"
+            tools:title="@string/toast_failed_io_remote" />
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
