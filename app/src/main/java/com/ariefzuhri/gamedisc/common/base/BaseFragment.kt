@@ -6,9 +6,9 @@ import androidx.navigation.fragment.findNavController
 
 open class BaseFragment : Fragment() {
 
-    fun Toolbar?.init() {
-        this?.setNavigationOnClickListener {
-            findNavController().popBackStack()
+    fun Toolbar.init() {
+        setNavigationOnClickListener {
+            findNavController().navigateUp()
         }
     }
 }
