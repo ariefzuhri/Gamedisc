@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ariefzuhri.gamedisc.R
 import com.ariefzuhri.gamedisc.common.action.navigateToSearch
 import com.ariefzuhri.gamedisc.common.action.openDetailsTab
 import com.ariefzuhri.gamedisc.common.base.BaseFragment
 import com.ariefzuhri.gamedisc.common.ui.adapter.GameAdapter
+import com.ariefzuhri.gamedisc.common.ui.adapter.HeaderAdapter
+import com.ariefzuhri.gamedisc.common.ui.adapter.HorizontalWrapperAdapter
 import com.ariefzuhri.gamedisc.common.util.DataLoadingContainer
 import com.ariefzuhri.gamedisc.databinding.FragmentHomeBinding
 import com.ariefzuhri.gamedisc.domain.enums.ViewOrientation
@@ -28,11 +31,13 @@ class HomeFragment : BaseFragment() {
 
     private val disposable = CompositeDisposable()
 
+    private lateinit var topRatedGameHeaderAdapter: HeaderAdapter
     private lateinit var topRatedGameAdapter: GameAdapter
+
+    private lateinit var latestReleasedGameHeaderAdapter: HeaderAdapter
     private lateinit var latestReleasedGameAdapter: GameAdapter
 
-    private lateinit var topRatedGamesLoadingContainer: DataLoadingContainer
-    private lateinit var latestReleasedGamesLoadingContainer: DataLoadingContainer
+    private lateinit var gameLoadingContainer: DataLoadingContainer
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,30 +50,33 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initTopRatedGameLoadingContainer()
+        initGameLoadingContainer()
         initTopRatedGameAdapter()
-        initTopRatedGameRecyclerView()
-        observeTopRatedGames()
-
-        initLatestReleasedGameLoadingContainer()
         initLatestReleasedGameAdapter()
-        initLatestReleasedGameRecyclerView()
+        initGameRecyclerView()
+
+        observeTopRatedGames()
         observeLatestReleasedGames()
 
         initClickListeners()
     }
 
-    private fun initTopRatedGameLoadingContainer() {
-        topRatedGamesLoadingContainer = DataLoadingContainer(
-            shimmer = binding.lytTopRatedGamePlaceholder.root,
+    private fun initGameLoadingContainer() {
+        gameLoadingContainer = DataLoadingContainer(
+            shimmer = binding.lytGamePlaceholder.root,
             initState = null,
             emptyState = null,
-            errorState = null,
-            binding.rvTopRatedGame
+            errorState = binding.stateError,
+            binding.rvGame
         )
     }
 
     private fun initTopRatedGameAdapter() {
+        topRatedGameHeaderAdapter = HeaderAdapter(
+            title = getString(R.string.tv_title_top_rated_games_home),
+            iconRes = R.drawable.ic_top_rated_24_home
+        )
+
         topRatedGameAdapter = GameAdapter(ViewOrientation.HORIZONTAL).apply {
             setEventListener(object : GameAdapter.EventListener {
                 override fun onItemClick(game: Game) {
@@ -77,7 +85,7 @@ class HomeFragment : BaseFragment() {
             })
 
             addLoadStateListener { loadState ->
-                with(topRatedGamesLoadingContainer) {
+                with(gameLoadingContainer) {
                     when (val currentState = loadState.refresh) {
                         is LoadState.Loading -> startLoading()
                         is LoadState.Error -> stopLoading(currentState.error.message)
@@ -88,14 +96,43 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun initTopRatedGameRecyclerView() {
-        binding.rvTopRatedGame.apply {
-            val linearLayoutManager = LinearLayoutManager(
-                context, LinearLayoutManager.HORIZONTAL, false
-            )
+    private fun initLatestReleasedGameAdapter() {
+        latestReleasedGameHeaderAdapter = HeaderAdapter(
+            title = getString(R.string.tv_title_latest_released_games_home),
+            iconRes = R.drawable.ic_latest_released_24_home
+        )
+
+        latestReleasedGameAdapter = GameAdapter(ViewOrientation.HORIZONTAL).apply {
+            setEventListener(object : GameAdapter.EventListener {
+                override fun onItemClick(game: Game) {
+                    context.openDetailsTab(game.id)
+                }
+            })
+
+            addLoadStateListener { loadState ->
+                with(gameLoadingContainer) {
+                    when (val currentState = loadState.refresh) {
+                        is LoadState.Loading -> startLoading()
+                        is LoadState.Error -> stopLoading(currentState.error.message)
+                        is LoadState.NotLoading -> stopLoading(false)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initGameRecyclerView() {
+        val concatAdapter = ConcatAdapter(
+            topRatedGameHeaderAdapter,
+            HorizontalWrapperAdapter(topRatedGameAdapter),
+            latestReleasedGameHeaderAdapter,
+            HorizontalWrapperAdapter(latestReleasedGameAdapter)
+        )
+
+        binding.rvGame.apply {
+            val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
-            adapter = topRatedGameAdapter
-            setHasFixedSize(true)
+            adapter = concatAdapter
         }
     }
 
@@ -105,45 +142,6 @@ class HomeFragment : BaseFragment() {
                 topRatedGameAdapter.submitData(lifecycle, pagingData)
             }
         )
-    }
-
-    private fun initLatestReleasedGameLoadingContainer() {
-        latestReleasedGamesLoadingContainer = DataLoadingContainer(
-            shimmer = binding.lytLatestReleasedGamePlaceholder.root,
-            initState = null,
-            emptyState = null,
-            errorState = binding.stateError,
-            binding.rvLatestReleasedGame
-        )
-    }
-
-    private fun initLatestReleasedGameAdapter() {
-        latestReleasedGameAdapter = GameAdapter(ViewOrientation.VERTICAL).apply {
-            setEventListener(object : GameAdapter.EventListener {
-                override fun onItemClick(game: Game) {
-                    context.openDetailsTab(game.id)
-                }
-            })
-
-            addLoadStateListener { loadState ->
-                with(latestReleasedGamesLoadingContainer) {
-                    when (val currentState = loadState.refresh) {
-                        is LoadState.Loading -> startLoading()
-                        is LoadState.Error -> stopLoading(currentState.error.message)
-                        is LoadState.NotLoading -> stopLoading(false)
-                    }
-                }
-            }
-        }
-    }
-
-    private fun initLatestReleasedGameRecyclerView() {
-        binding.rvLatestReleasedGame.apply {
-            val gridLayoutManager = GridLayoutManager(context, 2)
-            layoutManager = gridLayoutManager
-            adapter = latestReleasedGameAdapter
-            setHasFixedSize(true)
-        }
     }
 
     private fun observeLatestReleasedGames() {

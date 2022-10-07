@@ -1,11 +1,10 @@
 package com.ariefzuhri.gamedisc.common.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
+import com.ariefzuhri.gamedisc.common.base.BaseViewHolder
 import com.ariefzuhri.gamedisc.common.util.fillMaxWidth
 import com.ariefzuhri.gamedisc.common.util.load
 import com.ariefzuhri.gamedisc.databinding.ItemGameBinding
@@ -14,23 +13,23 @@ import com.ariefzuhri.gamedisc.domain.model.Game
 
 class GameAdapter(
     private val orientation: ViewOrientation,
-) : PagingDataAdapter<Game, GameAdapter.GameViewHolder>(GameComparator) {
+) : PagingDataAdapter<Game, BaseViewHolder<Game>>(GameComparator) {
 
     private var listener: EventListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Game> {
         val binding = ItemGameBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
+
         return GameViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder<Game>, position: Int) {
         val game = getItem(position)
         game?.let { holder.bind(it) }
-        Log.d("GameAdapter", "onBindViewHolder: $game")
     }
 
     object GameComparator : DiffUtil.ItemCallback<Game>() {
@@ -43,14 +42,15 @@ class GameAdapter(
         }
     }
 
-    inner class GameViewHolder(private val binding: ItemGameBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class GameViewHolder(
+        private val binding: ItemGameBinding,
+    ) : BaseViewHolder<Game>(binding) {
 
-        fun bind(game: Game) {
+        override fun bind(item: Game) {
             binding.apply {
                 adjustOrientation()
-                initView(game)
-                initClickListeners(game)
+                initView(item)
+                initClickListeners(item)
             }
         }
 

@@ -8,7 +8,6 @@ import androidx.core.graphics.drawable.toBitmap
 import coil.load
 import com.ariefzuhri.gamedisc.R
 
-
 fun Context?.getBitmapFromDrawable(drawableId: Int): Bitmap? {
     return this?.let { context ->
         ContextCompat.getDrawable(context, drawableId)

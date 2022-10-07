@@ -56,90 +56,33 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        style="@style/ScrollView"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_game"
+            style="@style/RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_game" />
+
+        <include
+            android:id="@+id/lyt_game_placeholder"
+            layout="@layout/layout_vertical_game_placeholder" />
+
+        <com.ariefzuhri.gamedisc.common.ui.custom.StateView
+            android:id="@+id/state_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:animationFile="empty_results.json"
+            app:animationHeight="220dp"
+            app:animationWidth="220dp"
+            app:isError="true"
+            tools:title="@string/toast_failed_io_remote" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_top_rated_games_title"
-                style="@style/TextView.Header.3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/ic_top_rated_24_home"
-                android:text="@string/tv_top_rated_title_games_home" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_top_rated_game"
-                    style="@style/RecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="8dp"
-                    tools:itemCount="1"
-                    tools:listitem="@layout/item_game" />
-
-                <include
-                    android:id="@+id/lyt_top_rated_game_placeholder"
-                    layout="@layout/layout_horizontal_game_placeholder" />
-
-            </FrameLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_latest_released_games_title"
-                style="@style/TextView.Header.3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/ic_latest_released_24_home"
-                android:text="@string/tv_latest_released_games_title_home" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_latest_released_game"
-                    style="@style/RecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:paddingHorizontal="8dp"
-                    tools:itemCount="1"
-                    tools:listitem="@layout/item_game" />
-
-                <include
-                    android:id="@+id/lyt_latest_released_game_placeholder"
-                    layout="@layout/layout_vertical_game_placeholder" />
-
-            </FrameLayout>
-
-            <com.ariefzuhri.gamedisc.common.ui.custom.StateView
-                android:id="@+id/state_error"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:animationFile="empty_results.json"
-                app:animationHeight="220dp"
-                app:animationWidth="220dp"
-                app:isError="true"
-                tools:title="@string/toast_failed_io_remote" />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
