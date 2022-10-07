@@ -7,10 +7,9 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 }
 
-def versionMajor = "0"
-def versionMinor = "0"
-def versionPatch = "0"
-def versionBuild = "00"
+def versionMajor = 0
+def versionMinor = 0
+def versionPatch = 1
 
 android {
     compileSdk 33
@@ -20,7 +19,7 @@ android {
         minSdk 21
         targetSdk 33
         versionCode 1
-        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        versionName "$versionMajor.$versionMinor.$versionPatch"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,7 +38,7 @@ android {
                     'proguard-android-optimize.txt'
             ), 'proguard-rules.pro'
 
-            versionNameSuffix "-dev$versionBuild"
+            versionNameSuffix "-dev"
         }
     }
 
