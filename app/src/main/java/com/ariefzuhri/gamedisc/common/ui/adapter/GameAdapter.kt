@@ -1,6 +1,5 @@
 package com.ariefzuhri.gamedisc.common.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -30,7 +29,6 @@ class GameAdapter(
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = getItem(position)
         game?.let { holder.bind(it) }
-        Log.d("GameAdapter", "onBindViewHolder: $game")
     }
 
     object GameComparator : DiffUtil.ItemCallback<Game>() {
